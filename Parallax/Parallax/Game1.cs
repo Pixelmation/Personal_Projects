@@ -12,7 +12,7 @@ namespace Parallax
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //create the layers
+        #region create the layers
         Texture2D parallax1;
         Texture2D parallax2;
         Texture2D parallax3;
@@ -20,8 +20,9 @@ namespace Parallax
         Texture2D parallax5;
         Texture2D parallax6;
         Texture2D parallax7;
+        #endregion
 
-        //Create the rectangles
+        #region Create the rectangles
         Rectangle rectangle11;
         Rectangle rectangle12;
         Rectangle rectangle13;
@@ -49,6 +50,7 @@ namespace Parallax
         Rectangle rectangle71;
         Rectangle rectangle72;
         Rectangle rectangle73;
+        #endregion
 
         public Game1()
         {
@@ -70,7 +72,8 @@ namespace Parallax
             graphics.PreferredBackBufferHeight = 540;
             graphics.ApplyChanges();
 
-            //Put each pair of rectangles side by side
+            //Put each trio of rectangles side by side
+            #region placing rectangles
             rectangle11 = new Rectangle(0, 0, 960, 540);
             rectangle12 = new Rectangle(960, 0, 960, 540);
             rectangle13 = new Rectangle(-960, 0, 960, 540);
@@ -98,6 +101,7 @@ namespace Parallax
             rectangle71 = new Rectangle(0, 0, 960, 540);
             rectangle72 = new Rectangle(960, 0, 960, 540);
             rectangle73 = new Rectangle(-960, 0, 960, 540);
+            #endregion
 
             base.Initialize();
         }
@@ -111,6 +115,7 @@ namespace Parallax
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            #region load parallax layers
             parallax1 = Content.Load<Texture2D>("layer_01");
             parallax2 = Content.Load<Texture2D>("layer_02");
             parallax3 = Content.Load<Texture2D>("layer_03");
@@ -118,6 +123,7 @@ namespace Parallax
             parallax5 = Content.Load<Texture2D>("layer_05");
             parallax6 = Content.Load<Texture2D>("layer_06");
             parallax7 = Content.Load<Texture2D>("layer_07");
+            #endregion
 
         }
 
@@ -141,9 +147,9 @@ namespace Parallax
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // bounds check for the parallax layers
+            #region bounds check for the parallax layers
 
-            //layer1 scrolling right
+            #region layer1 scrolling
             if (rectangle11.X + parallax1.Width / 2 <= 0)
                 rectangle11.X = rectangle12.X + parallax1.Width / 2;
             if (rectangle12.X + parallax1.Width / 2 <= 0)
@@ -157,7 +163,9 @@ namespace Parallax
                 rectangle12.X = rectangle11.X - parallax1.Width / 2;
             if (rectangle11.X >= 960)
                 rectangle11.X = rectangle13.X - parallax1.Width / 2;
+            #endregion
 
+            #region layer2 scrolling
             if (rectangle21.X + parallax2.Width / 2 <= 0)
                 rectangle21.X = rectangle22.X + parallax2.Width / 2;
             if (rectangle22.X + parallax2.Width / 2 <= 0)
@@ -171,7 +179,9 @@ namespace Parallax
                 rectangle22.X = rectangle21.X - parallax2.Width / 2;
             if (rectangle21.X >= 960)
                 rectangle21.X = rectangle23.X - parallax2.Width / 2;
+            #endregion
 
+            #region layer3 scrolling
             if (rectangle31.X + parallax3.Width / 2 <= 0)
                 rectangle31.X = rectangle32.X + parallax3.Width / 2;
             if (rectangle32.X + parallax3.Width / 2 <= 0)
@@ -185,7 +195,9 @@ namespace Parallax
                 rectangle32.X = rectangle31.X - parallax3.Width / 2;
             if (rectangle31.X >= 960)
                 rectangle31.X = rectangle33.X - parallax3.Width / 2;
+            #endregion
 
+            #region layer4 scrolling
             if (rectangle41.X + parallax4.Width / 2 <= 0)
                 rectangle41.X = rectangle42.X + parallax4.Width / 2;
             if (rectangle42.X + parallax4.Width / 2 <= 0)
@@ -199,7 +211,9 @@ namespace Parallax
                 rectangle42.X = rectangle41.X - parallax4.Width / 2;
             if (rectangle41.X >= 960)
                 rectangle41.X = rectangle43.X - parallax4.Width / 2;
+            #endregion
 
+            #region layer5 scrolling
             if (rectangle51.X + parallax3.Width / 2 <= 0)
                 rectangle51.X = rectangle32.X + parallax5.Width / 2;
             if (rectangle52.X + parallax3.Width / 2 <= 0)
@@ -213,7 +227,9 @@ namespace Parallax
                 rectangle52.X = rectangle51.X - parallax5.Width / 2;
             if (rectangle51.X >= 960)
                 rectangle51.X = rectangle53.X - parallax5.Width / 2;
+            #endregion
 
+            #region layer6 scrolling
             if (rectangle61.X + parallax3.Width / 2 <= 0)
                 rectangle61.X = rectangle32.X + parallax3.Width / 2;
             if (rectangle62.X + parallax3.Width / 2 <= 0)
@@ -227,7 +243,9 @@ namespace Parallax
                 rectangle62.X = rectangle31.X - parallax6.Width / 2;
             if (rectangle61.X >= 960)
                 rectangle61.X = rectangle33.X - parallax6.Width / 2;
+            #endregion
 
+            #region layer7 scrolling
             if (rectangle71.X + parallax3.Width / 2 <= 0)
                 rectangle71.X = rectangle32.X + parallax3.Width / 2;
             if (rectangle72.X + parallax3.Width / 2 <= 0)
@@ -241,40 +259,12 @@ namespace Parallax
                 rectangle72.X = rectangle71.X - parallax7.Width / 2;
             if (rectangle71.X >= 960)
                 rectangle71.X = rectangle73.X - parallax7.Width / 2;
+            #endregion
+
+            #endregion
 
 
-            
-            //if (rectangle21.X + parallax2.Width / 2 <= 0)
-            //    rectangle21.X = rectangle22.X + parallax2.Width / 2;
-            //if (rectangle22.X + parallax2.Width / 2 <= 0)
-            //    rectangle22.X = rectangle21.X + parallax2.Width / 2;
-            //
-            //if (rectangle31.X + parallax3.Width / 2 <= 0)
-            //    rectangle31.X = rectangle32.X + parallax3.Width / 2;
-            //if (rectangle32.X + parallax3.Width / 2 <= 0)
-            //    rectangle32.X = rectangle31.X + parallax3.Width / 2;
-            //
-            //if (rectangle41.X + parallax4.Width / 2 <= 0)
-            //    rectangle41.X = rectangle42.X + parallax4.Width / 2;
-            //if (rectangle42.X + parallax4.Width / 2 <= 0)
-            //    rectangle42.X = rectangle41.X + parallax4.Width / 2;
-            //
-            //if (rectangle51.X + parallax5.Width / 2 <= 0)
-            //    rectangle51.X = rectangle52.X + parallax5.Width / 2;
-            //if (rectangle52.X + parallax5.Width / 2 <= 0)
-            //    rectangle52.X = rectangle51.X + parallax5.Width / 2;
-            //
-            //if (rectangle61.X + parallax6.Width / 2 <= 0)
-            //    rectangle61.X = rectangle62.X + parallax6.Width / 2;
-            //if (rectangle62.X + parallax6.Width / 2 <= 0)
-            //    rectangle62.X = rectangle61.X + parallax6.Width / 2;
-            //
-            //if (rectangle71.X + parallax7.Width / 2 <= 0)
-            //    rectangle71.X = rectangle72.X + parallax7.Width / 2;
-            //if (rectangle72.X + parallax7.Width / 2 <= 0)
-            //    rectangle72.X = rectangle71.X + parallax7.Width / 2;
-
-
+            #region moveright
             //move each layer to the right on right arrowkey press
             if (state.IsKeyDown(Keys.Right))
             {
@@ -306,8 +296,10 @@ namespace Parallax
                 rectangle72.X -= 1 / 8;
                 rectangle73.X -= 1 / 8;
             }
+            #endregion
 
-            //move each layer to the left on left arrowkey press
+            #region moveleft
+            //move each layer to the left on left arrowkey press            
             if (state.IsKeyDown(Keys.Left))
             {
                 rectangle11.X += 10;
@@ -338,6 +330,7 @@ namespace Parallax
                 rectangle72.X += 1 / 8;
                 rectangle73.X += 1 / 8;
             }
+#endregion
 
             base.Update(gameTime);
         }
@@ -352,30 +345,35 @@ namespace Parallax
 
             spriteBatch.Begin();
 
+            #region drawing parallax
             spriteBatch.Draw(parallax7, rectangle71, Color.White);
             spriteBatch.Draw(parallax7, rectangle72, Color.White);
+            spriteBatch.Draw(parallax7, rectangle73, Color.White);
 
             spriteBatch.Draw(parallax6, rectangle61, Color.White);
             spriteBatch.Draw(parallax6, rectangle62, Color.White);
+            spriteBatch.Draw(parallax6, rectangle63, Color.White);
 
             spriteBatch.Draw(parallax5, rectangle51, Color.White);
             spriteBatch.Draw(parallax5, rectangle52, Color.White);
+            spriteBatch.Draw(parallax5, rectangle53, Color.White);
 
             spriteBatch.Draw(parallax4, rectangle41, Color.White);
             spriteBatch.Draw(parallax4, rectangle42, Color.White);
+            spriteBatch.Draw(parallax4, rectangle43, Color.White);
 
             spriteBatch.Draw(parallax3, rectangle31, Color.White);
             spriteBatch.Draw(parallax3, rectangle32, Color.White);
+            spriteBatch.Draw(parallax3, rectangle33, Color.White);
 
             spriteBatch.Draw(parallax2, rectangle21, Color.White);
             spriteBatch.Draw(parallax2, rectangle22, Color.White);
+            spriteBatch.Draw(parallax2, rectangle23, Color.White);
 
             spriteBatch.Draw(parallax1, rectangle11, Color.White);
             spriteBatch.Draw(parallax1, rectangle12, Color.White);
             spriteBatch.Draw(parallax1, rectangle13, Color.White);
-
-
-
+            #endregion
 
             spriteBatch.End();
 
