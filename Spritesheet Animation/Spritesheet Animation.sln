@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spritesheet Animation", "Spritesheet Animation\Spritesheet Animation.csproj", "{FB860DDD-4F18-4E35-8BFA-27870AF5BC6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB860DDD-4F18-4E35-8BFA-27870AF5BC6B}.Debug|x86.ActiveCfg = Debug|x86
+		{FB860DDD-4F18-4E35-8BFA-27870AF5BC6B}.Debug|x86.Build.0 = Debug|x86
+		{FB860DDD-4F18-4E35-8BFA-27870AF5BC6B}.Release|x86.ActiveCfg = Release|x86
+		{FB860DDD-4F18-4E35-8BFA-27870AF5BC6B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1701482D-2A50-4C97-875F-31D43001A80A}
+	EndGlobalSection
+EndGlobal
