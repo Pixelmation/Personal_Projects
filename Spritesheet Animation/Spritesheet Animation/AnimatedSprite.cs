@@ -86,16 +86,21 @@ namespace Spritesheet_Animation
             }
 
             //sprint check
-            if (currentKBState.IsKeyDown(Keys.Space))
+            if (currentKBState.IsKeyDown(Keys.LeftShift))
             {
-                spriteSpeed = 3;
+                spriteSpeed = 4;
+                interval = 100;
+            }
+            if (currentKBState.IsKeyUp(Keys.LeftShift))
+            {
+                spriteSpeed = 2;
                 interval = 100;
             }
 
             if (currentKBState.IsKeyDown(Keys.Up) == true)
             {
                 AnimateUp(gameTime);
-                if (position.Y > 25)
+                if (position.Y > 60)
                 {
                     position.Y -= spriteSpeed;
                 }
@@ -104,7 +109,7 @@ namespace Spritesheet_Animation
             if (currentKBState.IsKeyDown(Keys.Down) == true)
             {
                 AnimateDown(gameTime);
-                if (position.Y < 575)
+                if (position.Y < 426)
                 {
                     position.Y += spriteSpeed;
                 }
@@ -113,7 +118,7 @@ namespace Spritesheet_Animation
             if (currentKBState.IsKeyDown(Keys.Left) == true)
             {
                 AnimateLeft(gameTime);
-                if (position.X > 20)
+                if (position.X > 40)
                 {
                     position.X -= spriteSpeed;
                 }
@@ -122,7 +127,7 @@ namespace Spritesheet_Animation
             if (currentKBState.IsKeyDown(Keys.Right) == true)
             {
                 AnimateRight(gameTime);
-                if (position.X < 780)
+                if (position.X < 764)
                 {
                     position.X += spriteSpeed;
                 }
