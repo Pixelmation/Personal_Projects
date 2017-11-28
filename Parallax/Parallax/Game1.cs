@@ -66,7 +66,7 @@ namespace Parallax
         /// </summary>
         protected override void Initialize()
         {
-            //make the window 1920x1080
+            //make the window 960x540
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = 960;
             graphics.PreferredBackBufferHeight = 540;
