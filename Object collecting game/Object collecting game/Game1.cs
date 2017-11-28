@@ -92,6 +92,7 @@ namespace Object_collecting_game
             spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect, Color.White, 0f, sprite.Origin, 1.0f, SpriteEffects.None, 0);
             spriteBatch.End();
             base.Draw(gameTime);
+
         }
     }
 }
