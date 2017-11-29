@@ -62,6 +62,8 @@ namespace Object_collecting_game
             previousKBState = currentKBState;
             currentKBState = Keyboard.GetState();
 
+            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+
             //reset frames to standing
             if (currentKBState.GetPressedKeys().Length == 0)
             {
@@ -86,7 +88,7 @@ namespace Object_collecting_game
             //sprint check
             if (currentKBState.IsKeyDown(Keys.LeftShift))
             {
-                spriteSpeed = 3;
+                spriteSpeed = 4;
                 interval = 100;
             }
             if (currentKBState.IsKeyUp(Keys.LeftShift))
@@ -99,7 +101,7 @@ namespace Object_collecting_game
             if (currentKBState.IsKeyDown(Keys.Up))
             {
                 AnimateUp(gameTime);
-                if (position.Y > 60)
+                if (position.Y > 43)
                 {
                     position.Y -= spriteSpeed;
                 }
@@ -107,7 +109,7 @@ namespace Object_collecting_game
             if (currentKBState.IsKeyDown(Keys.Down))
             {
                 AnimateDown(gameTime);
-                if (position.Y < 426)
+                if (position.Y < 494)
                 {
                     position.Y += spriteSpeed;
                 }
@@ -115,7 +117,7 @@ namespace Object_collecting_game
             if (currentKBState.IsKeyDown(Keys.Left))
             {
                 AnimateLeft(gameTime);
-                if (position.X > 40)
+                if (position.X > 28)
                 {
                     position.X -= spriteSpeed;
                 }
@@ -123,7 +125,7 @@ namespace Object_collecting_game
             if (currentKBState.IsKeyDown(Keys.Right))
             {
                 AnimateRight(gameTime);
-                if (position.X < 764)
+                if (position.X < 932)
                 {
                     position.X += spriteSpeed;
                 }

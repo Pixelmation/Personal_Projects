@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Object_collecting_game
 {
+    //change Content.mgcb to be opened with Common Editor Factory
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -12,6 +13,15 @@ namespace Object_collecting_game
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         AnimatedSprite sprite;
+
+        Texture2D Coin;
+
+        Coin CoinRect1;
+        Coin CoinRect2;
+        Coin CoinRect3;
+        Coin CoinRect4;
+        Coin CoinRect5;
+        Coin CoinRect6;
 
         public Game1()
         {
@@ -34,6 +44,14 @@ namespace Object_collecting_game
             graphics.PreferredBackBufferHeight = 540;
             graphics.ApplyChanges();
 
+            CoinRect1 = new Coin(160, 20, 55, 63);
+            CoinRect2 = new Coin(760, 20, 55, 63);
+            CoinRect3 = new Coin(60, 230, 55, 63);
+            CoinRect4 = new Coin(860, 230, 55, 63);
+            CoinRect5 = new Coin(160, 440, 55, 63);
+            CoinRect6 = new Coin(760, 440, 55, 63);
+
+            
             base.Initialize();
         }
 
@@ -52,6 +70,7 @@ namespace Object_collecting_game
                 Position = new Vector2(400, 300)
             };
 
+            Coin = Content.Load<Texture2D>("Coin");
   
         }
 
@@ -76,6 +95,15 @@ namespace Object_collecting_game
 
             // TODO: Add your update logic here
             sprite.HandleSpriteMovement(gameTime);
+
+
+            if (sprite.SourceRect.Intersects(CoinRect1.CoinRect))
+            {
+                CoinRect1.HasBeenCollected();
+            }
+            
+            
+
             base.Update(gameTime);
         }
 
@@ -90,7 +118,18 @@ namespace Object_collecting_game
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect, Color.White, 0f, sprite.Origin, 1.0f, SpriteEffects.None, 0);
+            if (CoinRect1.HasBeenPickedUp == false)
+            {
+                spriteBatch.Draw(Coin, CoinRect1.CoinRect, Color.White);
+            }
+            spriteBatch.Draw(Coin, CoinRect2.CoinRect, Color.White);
+            spriteBatch.Draw(Coin, CoinRect3.CoinRect, Color.White);
+            spriteBatch.Draw(Coin, CoinRect4.CoinRect, Color.White);
+            spriteBatch.Draw(Coin, CoinRect5.CoinRect, Color.White);
+            spriteBatch.Draw(Coin, CoinRect6.CoinRect, Color.White);
             spriteBatch.End();
+
+
             base.Draw(gameTime);
 
         }
