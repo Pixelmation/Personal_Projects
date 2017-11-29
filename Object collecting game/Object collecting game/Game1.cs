@@ -67,7 +67,7 @@ namespace Object_collecting_game
             // TODO: use this.Content to load your game content here
             sprite = new AnimatedSprite(Content.Load<Texture2D>("SpriteSheet"), 1, 62, 92)
             {
-                Position = new Vector2(400, 300)
+                Position = new Vector2(480, 270)
             };
 
             Coin = Content.Load<Texture2D>("Coin");
@@ -99,10 +99,29 @@ namespace Object_collecting_game
 
             if (sprite.SourceRect.Intersects(CoinRect1.CoinRect))
             {
-                CoinRect1.HasBeenCollected();
+                CoinRect1.HasBeenPickedUp = true;
             }
-            
-            
+            if (sprite.SourceRect.Intersects(CoinRect2.CoinRect))
+            {
+                CoinRect2.HasBeenPickedUp = true;
+            }
+            if (sprite.SourceRect.Intersects(CoinRect3.CoinRect))
+            {
+                CoinRect3.HasBeenPickedUp = true;
+            }
+            if (sprite.SourceRect.Intersects(CoinRect4.CoinRect))
+            {
+                CoinRect4.HasBeenPickedUp = true;
+            }
+            if (sprite.SourceRect.Intersects(CoinRect5.CoinRect))
+            {
+                CoinRect5.HasBeenPickedUp = true;
+            }
+            if (sprite.SourceRect.Intersects(CoinRect6.CoinRect))
+            {
+                CoinRect6.HasBeenPickedUp = true;
+            }
+
 
             base.Update(gameTime);
         }
@@ -122,13 +141,28 @@ namespace Object_collecting_game
             {
                 spriteBatch.Draw(Coin, CoinRect1.CoinRect, Color.White);
             }
-            spriteBatch.Draw(Coin, CoinRect2.CoinRect, Color.White);
-            spriteBatch.Draw(Coin, CoinRect3.CoinRect, Color.White);
-            spriteBatch.Draw(Coin, CoinRect4.CoinRect, Color.White);
-            spriteBatch.Draw(Coin, CoinRect5.CoinRect, Color.White);
-            spriteBatch.Draw(Coin, CoinRect6.CoinRect, Color.White);
+            if (CoinRect2.HasBeenPickedUp == false)
+            {
+                spriteBatch.Draw(Coin, CoinRect2.CoinRect, Color.White);
+            }
+            if (CoinRect3.HasBeenPickedUp == false)
+            {
+                spriteBatch.Draw(Coin, CoinRect3.CoinRect, Color.White);
+            }
+            if (CoinRect4.HasBeenPickedUp == false)
+            {
+                spriteBatch.Draw(Coin, CoinRect4.CoinRect, Color.White);
+            }
+            if (CoinRect5.HasBeenPickedUp == false)
+            {
+                spriteBatch.Draw(Coin, CoinRect5.CoinRect, Color.White);
+            }
+            if (CoinRect6.HasBeenPickedUp == false)
+            {
+                spriteBatch.Draw(Coin, CoinRect6.CoinRect, Color.White);
+            }
             spriteBatch.End();
-
+            
 
             base.Draw(gameTime);
 
