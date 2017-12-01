@@ -13,6 +13,8 @@ namespace Object_collecting_game
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         AnimatedSprite sprite;
+        int score = 0;
+        SpriteFont Font;
 
         Texture2D Coin;
 
@@ -51,7 +53,7 @@ namespace Object_collecting_game
             CoinRect5 = new Coin(160, 440, 55, 63);
             CoinRect6 = new Coin(760, 440, 55, 63);
 
-            
+
             base.Initialize();
         }
 
@@ -65,13 +67,15 @@ namespace Object_collecting_game
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            sprite = new AnimatedSprite(Content.Load<Texture2D>("SpriteSheet"), 1, 62, 92)
+            sprite = new AnimatedSprite(Content.Load<Texture2D>("SpriteSheet"), 1, 56, 88)
             {
                 Position = new Vector2(480, 270)
             };
 
             Coin = Content.Load<Texture2D>("Coin");
-  
+
+            Font = Content.Load<SpriteFont>("Font");
+
         }
 
         /// <summary>
@@ -97,29 +101,53 @@ namespace Object_collecting_game
             sprite.HandleSpriteMovement(gameTime);
 
 
-            if (sprite.SourceRect.Intersects(CoinRect1.CoinRect))
+            if (sprite.CollisionRect.Intersects(CoinRect1.CoinRect))
             {
-                CoinRect1.HasBeenPickedUp = true;
+                if (CoinRect1.HasBeenPickedUp == false)
+                {
+                    CoinRect1.HasBeenPickedUp = true;
+                    score++;
+                }
             }
-            if (sprite.SourceRect.Intersects(CoinRect2.CoinRect))
+            if (sprite.CollisionRect.Intersects(CoinRect2.CoinRect))
             {
-                CoinRect2.HasBeenPickedUp = true;
+                if (CoinRect2.HasBeenPickedUp == false)
+                {
+                    CoinRect2.HasBeenPickedUp = true;
+                    score++;
+                }
             }
-            if (sprite.SourceRect.Intersects(CoinRect3.CoinRect))
+            if (sprite.CollisionRect.Intersects(CoinRect3.CoinRect))
             {
-                CoinRect3.HasBeenPickedUp = true;
+                if (CoinRect3.HasBeenPickedUp == false)
+                {
+                    CoinRect3.HasBeenPickedUp = true;
+                    score++;
+                }
             }
-            if (sprite.SourceRect.Intersects(CoinRect4.CoinRect))
+            if (sprite.CollisionRect.Intersects(CoinRect4.CoinRect))
             {
-                CoinRect4.HasBeenPickedUp = true;
+                if (CoinRect4.HasBeenPickedUp == false)
+                {
+                    CoinRect4.HasBeenPickedUp = true;
+                    score++;
+                }
             }
-            if (sprite.SourceRect.Intersects(CoinRect5.CoinRect))
+            if (sprite.CollisionRect.Intersects(CoinRect5.CoinRect))
             {
-                CoinRect5.HasBeenPickedUp = true;
+                if (CoinRect5.HasBeenPickedUp == false)
+                {
+                    CoinRect5.HasBeenPickedUp = true;
+                    score++;
+                }
             }
-            if (sprite.SourceRect.Intersects(CoinRect6.CoinRect))
+            if (sprite.CollisionRect.Intersects(CoinRect6.CoinRect))
             {
-                CoinRect6.HasBeenPickedUp = true;
+                if (CoinRect6.HasBeenPickedUp == false)
+                {
+                    CoinRect6.HasBeenPickedUp = true;
+                    score++;
+                }
             }
 
 
@@ -161,11 +189,23 @@ namespace Object_collecting_game
             {
                 spriteBatch.Draw(Coin, CoinRect6.CoinRect, Color.White);
             }
-            spriteBatch.End();
+
+            string scoreString = "You collected " + score + " Coins";
+            string winMessage = "YOU WIN!";
+
+            var scoreStringDisplay = Font.MeasureString(scoreString);
+            var winMessageDisplay = Font.MeasureString(winMessage);
+
+            spriteBatch.DrawString(Font, scoreString, new Vector2(480 -  scoreStringDisplay.X / 2, 10), Color.White);
+            if ( score == 6)
+            {
+                spriteBatch.DrawString(Font, "YOU WIN!", new Vector2(480 - winMessageDisplay.X / 2, 270), Color.White);
+            }
             
+            spriteBatch.End();
 
             base.Draw(gameTime);
 
-        }
+        }       
     }
 }

@@ -13,7 +13,7 @@ namespace Object_collecting_game
         bool hasBeenPickedUp = false;
 
         public bool HasBeenPickedUp { get; set; }
-        public Coin(int x,int y,int width,int height)
+        public Coin(int x, int y, int width, int height)
         {
             CoinRect = new Rectangle(x, y, width, height);
         }

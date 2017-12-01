@@ -18,8 +18,8 @@ namespace Object_collecting_game
         float timer = 0f;
         float interval = 200f;
         int currentFrame = 0;
-        int spriteWidth = 62;
-        int spriteHeight = 92;
+        int spriteWidth = 56;
+        int spriteHeight = 88;
         int spriteSpeed = 2;
         Rectangle sourceRect;
         Vector2 position;
@@ -47,6 +47,13 @@ namespace Object_collecting_game
             get { return sourceRect; }
             set { sourceRect = value; }
         }
+
+        public Rectangle CollisionRect
+        {
+            get { return new Rectangle((int)position.X - spriteWidth / 2, (int)position.Y - spriteHeight / 2, sourceRect.Width, sourceRect.Height); }
+            
+        }
+
 
         public AnimatedSprite(Texture2D texture, int currentFrame, int spriteWidth, int spriteHeight)
         {
