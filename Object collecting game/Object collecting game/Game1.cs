@@ -46,13 +46,14 @@ namespace Object_collecting_game
             graphics.PreferredBackBufferHeight = 540;
             graphics.ApplyChanges();
 
+            #region coin rectangles
             CoinRect1 = new Coin(160, 20, 55, 63);
             CoinRect2 = new Coin(760, 20, 55, 63);
             CoinRect3 = new Coin(60, 230, 55, 63);
             CoinRect4 = new Coin(860, 230, 55, 63);
             CoinRect5 = new Coin(160, 440, 55, 63);
             CoinRect6 = new Coin(760, 440, 55, 63);
-
+            #endregion
 
             base.Initialize();
         }
@@ -100,7 +101,7 @@ namespace Object_collecting_game
             // TODO: Add your update logic here
             sprite.HandleSpriteMovement(gameTime);
 
-
+            #region add to score when a coin is intersected
             if (sprite.CollisionRect.Intersects(CoinRect1.CoinRect))
             {
                 if (CoinRect1.HasBeenPickedUp == false)
@@ -149,6 +150,7 @@ namespace Object_collecting_game
                     score++;
                 }
             }
+            #endregion
 
 
             base.Update(gameTime);
@@ -163,6 +165,7 @@ namespace Object_collecting_game
             GraphicsDevice.Clear(Color.DarkOliveGreen);
 
             // TODO: Add your drawing code here
+            #region drawing the coins
             spriteBatch.Begin();
             spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect, Color.White, 0f, sprite.Origin, 1.0f, SpriteEffects.None, 0);
             if (CoinRect1.HasBeenPickedUp == false)
@@ -189,7 +192,9 @@ namespace Object_collecting_game
             {
                 spriteBatch.Draw(Coin, CoinRect6.CoinRect, Color.White);
             }
+            #endregion
 
+            #region drawing the G.U.I
             string scoreString = "You collected " + score + " Coins";
             string winMessage = "YOU WIN!";
 
@@ -201,7 +206,7 @@ namespace Object_collecting_game
             {
                 spriteBatch.DrawString(Font, "YOU WIN!", new Vector2(480 - winMessageDisplay.X / 2, 270), Color.White);
             }
-            
+            #endregion
             spriteBatch.End();
 
             base.Draw(gameTime);

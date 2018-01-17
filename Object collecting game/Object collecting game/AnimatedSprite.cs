@@ -71,7 +71,7 @@ namespace Object_collecting_game
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
 
-            //reset frames to standing
+            #region if the player stops moving, reset frames to standing
             if (currentKBState.GetPressedKeys().Length == 0)
             {
                 if (currentFrame > 0 && currentFrame < 4)
@@ -91,6 +91,7 @@ namespace Object_collecting_game
                     currentFrame = 12;
                 }
             }
+            #endregion
 
             //sprint check
             if (currentKBState.IsKeyDown(Keys.LeftShift))
@@ -105,6 +106,7 @@ namespace Object_collecting_game
             }
 
             //call movement animation and set speed to zero if sprite will move offscreen
+            #region movement UP
             if (currentKBState.IsKeyDown(Keys.Up))
             {
                 AnimateUp(gameTime);
@@ -113,6 +115,9 @@ namespace Object_collecting_game
                     position.Y -= spriteSpeed;
                 }
             }
+            #endregion
+
+            #region movement Down
             if (currentKBState.IsKeyDown(Keys.Down))
             {
                 AnimateDown(gameTime);
@@ -121,6 +126,9 @@ namespace Object_collecting_game
                     position.Y += spriteSpeed;
                 }
             }
+            #endregion
+
+            #region movement Left
             if (currentKBState.IsKeyDown(Keys.Left))
             {
                 AnimateLeft(gameTime);
@@ -129,6 +137,9 @@ namespace Object_collecting_game
                     position.X -= spriteSpeed;
                 }
             }
+            #endregion
+
+            #region movement Right
             if (currentKBState.IsKeyDown(Keys.Right))
             {
                 AnimateRight(gameTime);
@@ -137,14 +148,16 @@ namespace Object_collecting_game
                     position.X += spriteSpeed;
                 }
             }
+            #endregion
 
+            //places the player sprite in the center
             origin = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
 
         }
 
         //animate frames during movement
 
-        //UP frames
+        #region UP frames
         public void AnimateUp(GameTime gameTime)
         {
             if (currentKBState != previousKBState)
@@ -165,8 +178,9 @@ namespace Object_collecting_game
                 timer = 0f;
             }
         }
+        #endregion
 
-        //DOWN frames
+        #region DOWN frames
         public void AnimateDown(GameTime gameTime)
         {
             if (currentKBState != previousKBState)
@@ -187,8 +201,9 @@ namespace Object_collecting_game
                 timer = 0f;
             }
         }
+        #endregion
 
-        //LEFT frames
+        #region LEFT frames
         public void AnimateLeft(GameTime gameTime)
         {
             if (currentKBState != previousKBState)
@@ -209,8 +224,9 @@ namespace Object_collecting_game
                 timer = 0f;
             }
         }
+        #endregion
 
-        //RIGHT frames
+        #region RIGHT frames
         public void AnimateRight(GameTime gameTime)
         {
             if (currentKBState != previousKBState)
@@ -231,5 +247,6 @@ namespace Object_collecting_game
                 timer = 0f;
             }
         }
+        #endregion
     }
 }
