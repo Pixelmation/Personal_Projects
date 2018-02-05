@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>P-Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -61,6 +61,8 @@
     <Content Include="Content\layer_06.png" />
     <Content Include="Content\layer_07.png" />
     <Content Include="Icon.ico" />
+    <Content Include="P-Icon.ico" />
+    <Content Include="Parallax_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
