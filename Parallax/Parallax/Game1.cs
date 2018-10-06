@@ -68,23 +68,24 @@ namespace Parallax
         {
             //make the window 960x540
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 1024;
+            graphics.PreferredBackBufferWidth = 960;
+            graphics.PreferredBackBufferHeight = 540;
+            Window.AllowUserResizing = true;
             graphics.ApplyChanges();
 
             //Put each trio of rectangles side by side
             #region placing rectangles
-            rectangle11 = new Rectangle(0, 0, 1024, 1024);
-            rectangle12 = new Rectangle(1024, 0, 1024, 1024);
-            rectangle13 = new Rectangle(-1024, 0, 1024, 1024);
+            rectangle11 = new Rectangle(0, 0, 960, 540);
+            rectangle12 = new Rectangle(960, 0, 960, 540);
+            rectangle13 = new Rectangle(-960, 0, 960, 540);
 
-            rectangle21 = new Rectangle(0, 0, 1024, 1024);
-            rectangle22 = new Rectangle(1024, 0, 1024, 1024);
-            rectangle23 = new Rectangle(-1024, 0, 1024, 1024);
+            rectangle21 = new Rectangle(0, 0, 960, 540);
+            rectangle22 = new Rectangle(960, 0, 960, 540);
+            rectangle23 = new Rectangle(-960, 0, 960, 540);
 
-            rectangle31 = new Rectangle(0, 0, 1024, 1024);
-            rectangle32 = new Rectangle(1024, 0, 1024, 1024);
-            rectangle33 = new Rectangle(-1024, 0, 1024, 1024);
+            rectangle31 = new Rectangle(0, 0, 960, 540);
+            rectangle32 = new Rectangle(960, 0, 960, 540);
+            rectangle33 = new Rectangle(-960, 0, 960, 540);
 
             rectangle41 = new Rectangle(0, 0, 960, 540);
             rectangle42 = new Rectangle(960, 0, 960, 540);
@@ -116,9 +117,9 @@ namespace Parallax
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region load parallax layers
-            parallax1 = Content.Load<Texture2D>("Parallax01");
-            parallax2 = Content.Load<Texture2D>("Parallax02");
-            parallax3 = Content.Load<Texture2D>("background");
+            parallax1 = Content.Load<Texture2D>("layer_01");
+            parallax2 = Content.Load<Texture2D>("layer_02");
+            parallax3 = Content.Load<Texture2D>("layer_03");
             parallax4 = Content.Load<Texture2D>("layer_04");
             parallax5 = Content.Load<Texture2D>("layer_05");
             parallax6 = Content.Load<Texture2D>("layer_06");
@@ -143,25 +144,27 @@ namespace Parallax
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            KeyboardState state = Keyboard.GetState();
+            KeyboardState KBstate = Keyboard.GetState();
+
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            //moves each tile to the left boundry or right boundry depending on whether you're scrolling left or right
             #region bounds check for the parallax layers
 
             #region layer1 scrolling
             if (rectangle11.X + parallax1.Width / 2 <= 0)
                 rectangle11.X = rectangle12.X + parallax1.Width / 2;
-            if (rectangle12.X + parallax1.Width / 2 <= 0)
+            if (rectangle12.X + parallax1.Width / 2 <= 20)
                 rectangle12.X = rectangle13.X + parallax1.Width / 2;
-            if (rectangle13.X + parallax1.Width / 2 <= 0)
+            if (rectangle13.X + parallax1.Width / 2 <= 20)
                 rectangle13.X = rectangle11.X + parallax1.Width / 2;
 
-            if (rectangle13.X >= 960)
+            if (rectangle13.X >= 1000)
                 rectangle13.X = rectangle12.X - parallax1.Width / 2;
-            if (rectangle12.X >= 960)
+            if (rectangle12.X >= 1000)
                 rectangle12.X = rectangle11.X - parallax1.Width / 2;
-            if (rectangle11.X >= 960)
+            if (rectangle11.X >= 1000)
                 rectangle11.X = rectangle13.X - parallax1.Width / 2;
             #endregion
 
@@ -263,10 +266,10 @@ namespace Parallax
 
             #endregion
 
-
+            //moving right speeds
             #region moveright
             //move each layer to the right on right arrowkey press
-            if (state.IsKeyDown(Keys.Right))
+            if (KBstate.IsKeyDown(Keys.Right))
             {
                 rectangle11.X -= 10;
                 rectangle12.X -= 10;
@@ -298,9 +301,10 @@ namespace Parallax
             }
             #endregion
 
+            //moving left speeds
             #region moveleft
             //move each layer to the left on left arrowkey press            
-            if (state.IsKeyDown(Keys.Left))
+            if (KBstate.IsKeyDown(Keys.Left))
             {
                 rectangle11.X += 10;
                 rectangle12.X += 10;
