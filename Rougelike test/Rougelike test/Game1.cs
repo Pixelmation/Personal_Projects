@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Game1
+namespace Rougelike_test
 {
     /// <summary>
     /// This is the main type for your game.
@@ -11,14 +11,6 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Texture2D logo;
-        float targetx = 300;
-        float targety;
-        Vector2 scale;
-
-        Vector2 position = new Vector2(0, 0);
-        Vector2 velocity = new Vector2(100, 100);
 
         public Game1()
         {
@@ -49,10 +41,6 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //load my image
-            logo = this.Content.Load<Texture2D>("Pixelmation_Logo_Transparent");
-            scale = new Vector2(targetx / (float)logo.Width, targetx / (float)logo.Width);
-            targety = logo.Height * scale.Y;
         }
 
         /// <summary>
@@ -75,32 +63,7 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-            position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        /*
-            //if image reaches the left boundry, negate x velocity
-            if (position.X <= 0 &&  velocity.X <= 0)
-            {
-                velocity.X *= -1;
-            }
-            
-            //if image reaches the top boundary, negate y velocity
-            else if (position.Y <= 0 && velocity.Y <= 0)
-            {
-                velocity.Y *= -1;
-            }
 
-            //if image reaches the right boundry, negate x velocity
-            else if (position.X >= graphics.GraphicsDevice.Viewport.Width - targetx && velocity.X >= 0)
-            {
-                velocity.X *= -1;
-            }
-
-            //if image reaches the bottom boundary, negate y velocity
-            else if (position.Y >= graphics.GraphicsDevice.Viewport.Height - targety && velocity.Y >= 0)
-            {
-                velocity.Y *= -1;
-            }
-            */
             base.Update(gameTime);
         }
 
@@ -110,12 +73,9 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            spriteBatch.Draw(logo, position, Color.White);
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }

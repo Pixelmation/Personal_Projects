@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Better Parallax", "Better Parallax\Better Parallax.csproj", "{59AAF40E-67FA-49B4-95C4-909F882B644D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59AAF40E-67FA-49B4-95C4-909F882B644D}.Debug|x86.ActiveCfg = Debug|x86
+		{59AAF40E-67FA-49B4-95C4-909F882B644D}.Debug|x86.Build.0 = Debug|x86
+		{59AAF40E-67FA-49B4-95C4-909F882B644D}.Release|x86.ActiveCfg = Release|x86
+		{59AAF40E-67FA-49B4-95C4-909F882B644D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADF82E25-6D29-413B-A713-D81A109652B5}
+	EndGlobalSection
+EndGlobal

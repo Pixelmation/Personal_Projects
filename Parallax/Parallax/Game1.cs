@@ -68,23 +68,23 @@ namespace Parallax
         {
             //make the window 960x540
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 960;
-            graphics.PreferredBackBufferHeight = 540;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 1024;
             graphics.ApplyChanges();
 
             //Put each trio of rectangles side by side
             #region placing rectangles
-            rectangle11 = new Rectangle(0, 0, 960, 540);
-            rectangle12 = new Rectangle(960, 0, 960, 540);
-            rectangle13 = new Rectangle(-960, 0, 960, 540);
+            rectangle11 = new Rectangle(0, 0, 1024, 1024);
+            rectangle12 = new Rectangle(1024, 0, 1024, 1024);
+            rectangle13 = new Rectangle(-1024, 0, 1024, 1024);
 
-            rectangle21 = new Rectangle(0, 0, 960, 540);
-            rectangle22 = new Rectangle(960, 0, 960, 540);
-            rectangle23 = new Rectangle(-960, 0, 960, 540);
+            rectangle21 = new Rectangle(0, 0, 1024, 1024);
+            rectangle22 = new Rectangle(1024, 0, 1024, 1024);
+            rectangle23 = new Rectangle(-1024, 0, 1024, 1024);
 
-            rectangle31 = new Rectangle(0, 0, 960, 540);
-            rectangle32 = new Rectangle(960, 0, 960, 540);
-            rectangle33 = new Rectangle(-960, 0, 960, 540);
+            rectangle31 = new Rectangle(0, 0, 1024, 1024);
+            rectangle32 = new Rectangle(1024, 0, 1024, 1024);
+            rectangle33 = new Rectangle(-1024, 0, 1024, 1024);
 
             rectangle41 = new Rectangle(0, 0, 960, 540);
             rectangle42 = new Rectangle(960, 0, 960, 540);
@@ -116,9 +116,9 @@ namespace Parallax
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region load parallax layers
-            parallax1 = Content.Load<Texture2D>("layer_01");
-            parallax2 = Content.Load<Texture2D>("layer_02");
-            parallax3 = Content.Load<Texture2D>("layer_03");
+            parallax1 = Content.Load<Texture2D>("Parallax01");
+            parallax2 = Content.Load<Texture2D>("Parallax02");
+            parallax3 = Content.Load<Texture2D>("background");
             parallax4 = Content.Load<Texture2D>("layer_04");
             parallax5 = Content.Load<Texture2D>("layer_05");
             parallax6 = Content.Load<Texture2D>("layer_06");

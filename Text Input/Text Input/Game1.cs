@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
-namespace Game1
+namespace Text_Input
 {
     /// <summary>
     /// This is the main type for your game.
@@ -12,13 +13,17 @@ namespace Game1
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D logo;
-        float targetx = 300;
-        float targety;
-        Vector2 scale;
+        //initializes a string
+        string result = "";
 
-        Vector2 position = new Vector2(0, 0);
-        Vector2 velocity = new Vector2(100, 100);
+        //creates an event handler for on text entered
+        EventHandler<TextInputEventArgs> onTextEntered;
+
+        //prev keyboard state for checking special chars later
+        KeyboardState _prevKeyState;
+
+        //the font file
+        SpriteFont Font;
 
         public Game1()
         {
@@ -36,6 +41,10 @@ namespace Game1
         {
             // TODO: Add your initialization logic here
 
+            //handles the text input methods
+            Window.TextInput += TextEntered;
+            onTextEntered += HandleInput;
+
             base.Initialize();
         }
 
@@ -48,11 +57,10 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //loads an ariel 48 font
+            Font = Content.Load<SpriteFont>("Font");
+
             // TODO: use this.Content to load your game content here
-            //load my image
-            logo = this.Content.Load<Texture2D>("Pixelmation_Logo_Transparent");
-            scale = new Vector2(targetx / (float)logo.Width, targetx / (float)logo.Width);
-            targety = logo.Height * scale.Y;
         }
 
         /// <summary>
@@ -74,33 +82,13 @@ namespace Game1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            KeyboardState keyState = Keyboard.GetState();
+
             // TODO: Add your update logic here
-            position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        /*
-            //if image reaches the left boundry, negate x velocity
-            if (position.X <= 0 &&  velocity.X <= 0)
-            {
-                velocity.X *= -1;
-            }
-            
-            //if image reaches the top boundary, negate y velocity
-            else if (position.Y <= 0 && velocity.Y <= 0)
-            {
-                velocity.Y *= -1;
-            }
 
-            //if image reaches the right boundry, negate x velocity
-            else if (position.X >= graphics.GraphicsDevice.Viewport.Width - targetx && velocity.X >= 0)
-            {
-                velocity.X *= -1;
-            }
+            // Handle other special characters here (such as tab )
 
-            //if image reaches the bottom boundary, negate y velocity
-            else if (position.Y >= graphics.GraphicsDevice.Viewport.Height - targety && velocity.Y >= 0)
-            {
-                velocity.Y *= -1;
-            }
-            */
+            _prevKeyState = keyState;
             base.Update(gameTime);
         }
 
@@ -110,14 +98,38 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            //draw result
             spriteBatch.Begin();
-            spriteBatch.Draw(logo, position, Color.White);
+            spriteBatch.DrawString(Font, result, new Vector2(100, 100), Color.Black);
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Collects the text entered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextEntered(object sender, TextInputEventArgs e)
+        {
+            if (onTextEntered != null)
+                onTextEntered.Invoke(sender, e);
+        }
+
+        /// <summary>
+        /// turns the text entered into a char, then adds it to result
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HandleInput(object sender, TextInputEventArgs e)
+        {
+            char charEntered = e.Character;
+            result += charEntered;
         }
     }
 }

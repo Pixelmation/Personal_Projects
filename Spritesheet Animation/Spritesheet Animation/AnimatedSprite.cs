@@ -144,7 +144,7 @@ namespace Spritesheet_Animation
                 currentFrame = 13;
             }
 
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (timer > interval)
             {
