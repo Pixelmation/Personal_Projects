@@ -86,6 +86,21 @@ namespace Text_Input
 
             // TODO: Add your update logic here
 
+            if ((keyState.IsKeyDown(Keys.LeftShift) && _prevKeyState.IsKeyDown(Keys.D0)) && (keyState.IsKeyUp(Keys.LeftShift) && _prevKeyState.IsKeyUp(Keys.D0)))
+            {
+                onTextEntered.Invoke(this, new TextInputEventArgs('('));
+            }
+
+            if ((keyState.IsKeyDown(Keys.LeftShift) && _prevKeyState.IsKeyDown(Keys.D0)) && (keyState.IsKeyUp(Keys.LeftShift) && _prevKeyState.IsKeyUp(Keys.D0)))
+            {
+                onTextEntered.Invoke(this, new TextInputEventArgs(')'));
+            }
+
+            if (keyState.IsKeyDown(Keys.Back) && _prevKeyState.IsKeyUp(Keys.Back))
+            {
+                onTextEntered.Invoke(this, new TextInputEventArgs('\b'));
+            }
+
             // Handle other special characters here (such as tab )
 
             _prevKeyState = keyState;
